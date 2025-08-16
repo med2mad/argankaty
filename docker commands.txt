@@ -1,0 +1,19 @@
+
+docker-compose up -d
+docker-compose start / docker-compose restart back-end-net
+
+-------------
+
+docker build -t front-end ./front-end
+docker build -t back-end-net ./back-end-net
+docker network create myshitynetwork
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourPassword123!" -p 1433:1433 --name sqlserver --network myshitynetwork -d mcr.microsoft.com/mssql/server:2022-latest
+docker run -d --network myshitynetwork -p 5081:8080 --name back-end-net back-end-net
+docker run -d -p 3000:80 --name front-end front-end
+
+-------------
+
+connection string : "Server=sqlserver,1433;Database=mak;User Id=sa;Password=YourPassword123!;TrustServerCertificate=True;"
+to connectio via ssms : server name = localhost,1433 , Authentication = SQL server auth , Login = sa , pass = YourPassword123!
+
+
