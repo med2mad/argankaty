@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddControllers();
-builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
-
-//builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAll", policy => {
@@ -19,21 +17,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBContext") ?? throw new InvalidOperationException("Connection string 'DBContext' not found.")));
 
-//builder.Services.AddAuthorization();
-
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.UseRouting();
+//app.UseHttpsRedirection();
+
+// ✅ Apply CORS before controllers
 app.UseCors("AllowAll");
+
 app.UseStaticFiles();
 
-//app.UseAuthorization(); // Uncomment if you use authorization
-
-app.UseEndpoints(endpoints => {
-    endpoints.MapControllers();
-});
+// ✅ Map controllers (this replaces UseRouting + UseEndpoints)
+app.MapControllers();
 
 using (var scope = app.Services.CreateScope()) {
     var context = scope.ServiceProvider.GetRequiredService<DBContext>();

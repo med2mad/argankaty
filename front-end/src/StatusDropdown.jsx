@@ -31,7 +31,7 @@ function StatusDropdown({ currentStatus, orderId, onStatusChange }) {
       // const _UrlPort = `http://localhost:5081/orders/${orderId}/status`;
       // const _UrlPort = `http://localhost:8000/orders/${orderId}/status`;
       // const _UrlPort = `https://mak.ct.ws/orders/${orderId}/status`;
-      const _UrlPort = "http://ayaloli-001-site1.ntempurl.com/orders/${orderId}/status";
+      const _UrlPort = "/api/orders/${orderId}/status";
 
       const response = await fetch(_UrlPort, {
         method: 'PATCH',

@@ -60,7 +60,7 @@ function OrdersDashboard() {
         // const _UrlPort = `http://localhost:5081/orders/${orderId}`;
         // const _UrlPort = `http://localhost:8000/orders/${orderId}`;
         // const _UrlPort = `https://mak.ct.ws/orders/${orderId}`;
-        const _UrlPort = "http://ayaloli-001-site1.ntempurl.com/orders/${orderId}";
+        const _UrlPort = `/api/orders`;
 
         const response = await fetch(_UrlPort, { method: 'DELETE' });
         if (!response.ok) throw new Error('Delete failed');
@@ -80,7 +80,7 @@ function OrdersDashboard() {
         // const _UrlPort = 'http://localhost:5081/orders';
         // const _UrlPort = 'http://localhost:8000/orders';
         // const _UrlPort = 'https://mak.ct.ws/orders';
-        const _UrlPort = "http://ayaloli-001-site1.ntempurl.com/orders";
+        const _UrlPort = "/api/orders";
 
         const response = await fetch(_UrlPort);
         if (!response.ok) {

@@ -13,7 +13,7 @@ function OrderDetail() {
   // const _UrlPort = "http://localhost:5081";
   // const _UrlPort = "http://localhost:8000";
   // const _UrlPort = "https://mak.ct.ws";
-  const _UrlPort = "http://ayaloli-001-site1.ntempurl.com";
+  const _UrlPort = "/api/";
 
   const handleDelete = async () => {
     if (window.confirm('Delete this order?')) {

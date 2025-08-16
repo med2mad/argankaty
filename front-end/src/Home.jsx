@@ -6,7 +6,7 @@ import LanguageSelector from './LanguageSelector';
 import { useTranslation } from "react-i18next";
 
 function Home() {
-  const _UrlPort = "https://cuddly-funicular-gjwjj4xpqg5hvxr7-5081.app.github.dev";
+  const _UrlPort = "/api/";
   // const _UrlPort = "http://localhost:5081";
   // const _UrlPort = "http://localhost:8000";
   // const _UrlPort = "https://mak.ct.ws";
